@@ -1,0 +1,263 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="chaptitle" content="1: Computer Networks and the Internet">
+   <meta name="book" content="Computer Networking: A Top-Down Approach Featuring the Internet">
+   <meta name="nickname" content="kurose-ross1">
+   <meta name="module" content="1.3: The Network Edge">
+   <meta name="chapnum" content="2">
+   <meta name="moduletype" content="custom3">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win95; U) [Netscape]">
+   <title>Computer Networking: A Top-Down Approach Featuring the Internet Chapter 2 -- 1.3: The Network Edge</title>
+<script language="JAVASCRIPT">
+<!-- // old browsers ignore me
+
+//  -->
+</script>
+<style TYPE="text/css">
+<!--
+BODY {font-family: Arial, sans-serif}
+P	 {font-family: Arial, sans-serif}
+TD	 {font-family: Arial, sans-serif}
+UL 	 {font-family: Arial, sans-serif}
+OL	 {font-family: Arial, sans-serif}
+DL	 {font-family: Arial, sans-serif}
+H1	 {font-family: Arial, sans-serif}
+H2	 {font-family: Arial, sans-serif}
+H3	 {font-family: Arial, sans-serif}
+H4	 {font-family: Arial, sans-serif}
+H5	 {font-family: Arial, sans-serif}
+H6	 {font-family: Arial, sans-serif}
+-->
+</style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#9999CC" vlink="#9999CC" alink="#FFFFFF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="560" >
+<tr>
+<td><img SRC="spacer.gif" BORDER=0 height=10 width=20></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td><script language="javascript">
+<!-- // working around a bug in the feedback templates -- picks up the wrong banner.tmpl
+if (2 == 0) {
+	document.write("About The Book");
+} else if (2 == 98) {
+	document.write("Instructor Resources");
+} else if (2 == 99) {
+	document.write("Audio Message Boards");
+} else {
+	document.write("Online Book");
+}
+// -->
+</script>
+
+<br><img SRC="spacer.gif" height=10 width=10></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td VALIGN=BOTTOM>
+<h2>
+<font face="Arial, Helvetica, sans-serif"><font color="#9999CC">1.3: The
+Network Edge</font></font></h2>
+</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=10 >
+<tr>
+<td><font face="Arial, Helvetica, Sans-serif"><font size=+0>In the previous
+sections we presented a high-level description of the Internet and networking
+protocols. We are now going to delve a bit more deeply into the components
+of the Internet. We begin in this section at the edge of network and look
+at the components with which we are most familiar--the computers (for example,
+PCs and workstations) that we use on a daily basis. In the next section
+we will move from the network edge to the network core and examine switching
+and routing in computer networks. Then in Section 1.5 we will discuss the
+actual physical links that carry the signals sent between the computers
+and the switches.&nbsp;</font></font>
+<h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>1.3.1: End Systems,
+Clients, and Servers</font></font></h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>In computer networking
+jargon, the computers that we use on a daily basis are often referred to
+as <b>hosts </b>or <b>end systems.</b> They are referred to as hosts because
+they host (run) application-level programs such as a Web browser or server
+program, or an e-mail program. They are also referred to as end systems
+because they sit at the edge of the Internet, as shown in Figure 1.3. Throughout
+this book we will use the terms hosts and end systems interchangeably;
+that is, <i>host</i> = <i>end system.</i></font></font>
+<center>
+<p><img SRC="01-03.jpg" ALT="Figure 1.3" height=390 width=450>
+<br><font face="Arial, Helvetica, Sans-serif"><font size=-1><b>Figure 1.3:</b>
+End-system interaction</font></font></center>
+
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Hosts are sometimes
+further divided into two categories: <b>clients</b> and <b>servers.</b>
+Informally, clients often tend to be desktop PCs or workstations, whereas
+servers are more powerful machines. But there is a more precise meaning
+of a client and a server in computer networking. In the so-called <b>client/server
+model,</b> a client program running on one end system requests and receives
+information from a server running on another end system. Studied in detail
+in Chapter 2, this client/server model is undoubtedly the most prevalent
+structure for Internet applications. The Web, e-mail, file transfer, remote
+login (for example, Telnet), newsgroups, and many other popular applications
+adopt the client/server model. Since a client typically runs on one computer
+and the server runs on another computer, client/server Internet applications
+are, by definition, <b>distributed applications.</b> The client and the
+server interact with each other by communicating (that is, sending each
+other messages) over the Internet. At this level of abstraction, the routers,
+links and other "pieces" of the Internet serve as a "black box" that transfers
+messages between the distributed, communicating components of an Internet
+application. This is the level of abstraction depicted in Figure 1.3.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Computers (for
+example, a PC or a workstation), operating as clients and servers, are
+the most prevalent type of end system. However, an increasing number of
+alternative devices, such as so-called network computers and thin clients
+[<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#thinplanet2000" target="_new">Thinplanet
+2000</a>], Web TVs and set top boxes [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#mills1998" target="_new">Mills
+1998</a>], digital cameras, and other devices are being attached to the
+Internet as end systems. For an interesting discussion of the continuing
+evolution of Internet applications, see [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#attapps1998" target="_new">AT&amp;T
+Apps 1998</a>; <a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#dertouzos1999" target="_new">Dertouzos
+1999</a>; <a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#lucky1997" target="_new">Lucky
+1997</a>].&nbsp;</font></font>
+<h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>1.3.2: Connectionless
+and Connection-Oriented Services</font></font></h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>We have seen that
+end systems exchange messages with each other according to an application-level
+protocol in order to accomplish some task. The links, routers, and other
+pieces of the Internet provide the means to transport these messages between
+the end-system applications. But what are the characteristics of the communication
+services that are provided? The Internet, and more generally TCP/IP networks,
+provide two types of services to its applications: <b>connectionless service
+</b>and <b>connection-oriented service.</b> A developer creating an Internet
+application (for example, an e-mail application, a file transfer application,
+a Web application, or an Internet phone application) must program the application
+to use one of these two services. Here, we only briefly describe these
+two services; we discuss them in much more detail in Chapter 3, which covers
+transport layer protocols.&nbsp;</font></font>
+<p><b><font face="Arial, Helvetica, Sans-serif"><font size=+0>Connection-Oriented
+Service</font></font></b>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>When an application
+uses the connection-oriented service, the client and the server (residing
+in different end systems) send control packets to each other before sending
+packets with real data (such as e-mail messages). This so-called handshaking
+procedure alerts the client and server, allowing them to prepare for an
+onslaught of packets. It is interesting to note that this initial handshaking
+procedure is similar to the protocol used in human interaction. The exchange
+of "Hi's" we saw in Figure 1.2 is an example of a human "handshaking protocol"
+(even though handshaking is not literally taking place between the two
+people). The two TCP messages that are exchanged as part of the WWW interaction
+shown in Figure 1.2 are two of the three messages exchanged when TCP sets
+up a connection between a sender and receiver. The third TCP message (not
+shown) that forms the final part of the TCP three-way handshake (see Section
+3.5) is contained in the get message shown in Figure 1.2.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Once the handshaking
+procedure is finished, a connection is said to be established between the
+two end systems. But the two end systems are connected in a very loose
+manner, hence the terminology connection-oriented. In particular, only
+the end systems themselves are aware of this connection; the packet switches
+(that is, routers) within the Internet are completely oblivious to the
+connection. This is because a TCP connection consists of nothing more than
+allocated resources (buffers) and state variables in the end systems. The
+packet switches do not maintain any connection-state information.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>The Internet's
+connection-oriented service comes bundled with several other services,
+including reliable data transfer, flow control, and congestion control.
+By <b>reliable data transfer,</b> we mean that an application can rely
+on the connection to deliver all of its data without error and in the proper
+order. Reliability in the Internet is achieved through the use of acknowledgments
+and retransmissions. To get a preliminary idea about how the Internet implements
+the reliable transport service, consider an application that has established
+a connection between end systems A and B. When end system B receives a
+packet from A, it sends an acknowledgment; when end system A receives the
+acknowledgment, it knows that the corresponding packet has definitely been
+received. When end system A doesn't receive an acknowledgment, it assumes
+that the packet it sent was not received by B; it therefore retransmits
+the packet. <b>Flow control </b>makes sure that neither side of a connection
+overwhelms the other side by sending too many packets too fast. Indeed,
+the application at one side of the connection may not be able to process
+information as quickly as it receives the information. Therefore, there
+is a risk of overwhelming either side of an application. The flow-control
+service forces the sending end system to reduce its rate whenever there
+is such a risk. We shall see in Chapter 3 that the Internet implements
+the flow control service by using sender and receiver buffers in the communicating
+end systems. The Internet's <b>congestion-control</b> service helps prevent
+the Internet from entering a state of gridlock. When a router becomes congested,
+its buffers can overflow and packet loss can occur. In such circumstances,
+if every pair of communicating end systems continues to pump packets into
+the network as fast as they can, gridlock sets in and few packets are delivered
+to their destinations. The Internet avoids this problem by forcing end
+systems to decrease the rate at which they send packets into the network
+during periods of congestion. End systems are alerted to the existence
+of severe congestion when they stop receiving acknowledgments for the packets
+they have sent.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>We emphasize
+here that although the Internet's connection-oriented service comes bundled
+with reliable data transfer, flow control, and congestion control, these
+three features are by no means essential components of a connection-oriented
+service. A different type of computer network may provide a connection-oriented
+service to its applications without bundling in one or more of these features.
+Indeed, any protocol that performs handshaking between the communicating
+entities before transferring data is a connection-oriented service [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#iren1999" target="_new">Iren
+1999</a>].&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>The Internet's
+connection-oriented service has a name--<b>TCP</b> (Transmission Control
+Protocol); the initial version of the TCP protocol is defined in the Internet
+Request for Comments RFC 793 [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#rfc793" target="_new">RFC
+793</a>]. The services that TCP provides to an application include reliable
+transport, flow control, and congestion control. It is important to note
+that an application need only care about the services that are provided;
+it need not worry about <i>how</i> TCP actually implements reliability,
+flow control, or congestion control. <i>We,</i> of course, are very interested
+in how TCP implements these services, and we shall cover these topics in
+detail in Chapter 3.&nbsp;</font></font>
+<p><b><font face="Arial, Helvetica, Sans-serif"><font size=+0>Connectionless
+Service</font></font></b>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>There is no
+handshaking with the Internet's connectionless service. When one side of
+an application wants to send packets to another side of an application,
+the sending application simply sends the packets. Since there is no handshaking
+procedure prior to the transmission of the packets, data can be delivered
+faster. But there are no acknowledgments either, so a source never knows
+for sure which packets arrive at the destination. Moreover, the service
+makes no provision for flow control or congestion control. The Internet's
+connectionless service is provided by <b>UDP</b> (User Datagram Protocol);
+UDP is defined in the Internet Request for Comments RFC 768.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Most of the
+more familiar Internet applications use TCP, the Internet's connection-oriented
+service. These applications include Telnet (remote login), SMTP (for electronic
+mail), FTP (for file transfer), and HTTP (for the Web). Nevertheless, UDP,
+the Internet's connectionless service, is used by many applications, including
+many of the emerging multimedia applications, such as Internet phone, audio-on-demand,
+and video conferencing.&nbsp;</font></font></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<table ALIGN=RIGHT BORDER=0 >
+<tr>
+<td><font size=-1>&copy; 2000-2001 by <a href="http://www.awlonline.com" target="new">Addison
+Wesley Longman</a></font>
+<br><font size=-1>A division of Pearson Education</font></td>
+</tr>
+</table>
+
+<p><!-- Code and architecture (c)2000-2001 Prentice Hall, Inc.  -->
+</body>
+</html>

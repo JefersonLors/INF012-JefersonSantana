@@ -1,0 +1,212 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="chaptitle" content="1: Computer Networks and the Internet">
+   <meta name="book" content="Computer Networking: A Top-Down Approach Featuring the Internet">
+   <meta name="nickname" content="kurose-ross1">
+   <meta name="module" content="Interactivity: Traceroute">
+   <meta name="chapnum" content="2">
+   <meta name="moduletype" content="custom13">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win95; U) [Netscape]">
+   <title>Computer Networking: A Top-Down Approach Featuring the Internet Chapter 2 -- Interactivity: Traceroute</title>
+<script language="JAVASCRIPT">
+<!-- // old browsers ignore me
+
+//  -->
+</script>
+<style TYPE="text/css">
+<!--
+BODY {font-family: Arial, sans-serif}
+P	 {font-family: Arial, sans-serif}
+TD	 {font-family: Arial, sans-serif}
+UL 	 {font-family: Arial, sans-serif}
+OL	 {font-family: Arial, sans-serif}
+DL	 {font-family: Arial, sans-serif}
+H1	 {font-family: Arial, sans-serif}
+H2	 {font-family: Arial, sans-serif}
+H3	 {font-family: Arial, sans-serif}
+H4	 {font-family: Arial, sans-serif}
+H5	 {font-family: Arial, sans-serif}
+H6	 {font-family: Arial, sans-serif}
+-->
+</style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#9999CC" vlink="#9999CC" alink="#FFFFFF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="560" >
+<tr>
+<td><img SRC="spacer.gif" BORDER=0 height=10 width=20></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td><script language="javascript">
+<!-- // working around a bug in the feedback templates -- picks up the wrong banner.tmpl
+if (2 == 0) {
+	document.write("About The Book");
+} else if (2 == 98) {
+	document.write("Instructor Resources");
+} else if (2 == 99) {
+	document.write("Audio Message Boards");
+} else {
+	document.write("Online Book");
+}
+// -->
+</script>
+
+<br><img SRC="spacer.gif" height=10 width=10></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td VALIGN=BOTTOM>
+<h2>
+<font face="Arial, Helvetica, sans-serif"><font color="#9999CC">Interactivity:
+Traceroute</font></font></h2>
+</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=10 >
+<tr>
+<td><font face="Arial, Helvetica, Sans-serif"><font size=+0><b>Traceoute</b>
+is a popular program for tracing a packet's route from any source host
+to any destination host in the Internet. Before we explain what traceroute
+does and how it works, first try running the traceroute program. In the
+box below, enter the name of any host, such as surf.eurecomf.fr or www.mit.edu.
+The host name that you enter will be sent to a server located in Singapore.
+The host in Singapore will respond with the route taken from Singapore
+to the host you have listed in the box below. After running the program,
+return to this page for a discussion of the traceroute program.&nbsp;</font></font>
+<p><form 
+action="http://www.ix.singtel.com/cgi-bin/trace.cgi"
+method=post>
+<table>
+<tr>
+<td WIDTH="40"><b>Traceroute</b></td>
+
+<td><input type="text" name="target" value=""
+size=40></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td><input type="submit" value="Submit"><input type="reset" value="Clear"></td>
+</tr>
+</table>
+</form>
+<h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>What Traceroute
+Does and How It Works</font></font></h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>The main packet
+switches in the Internet are called <b>routers, </b>and routers use <b>datagram
+routing</b>. Specifically, when a source constructs a packet, it appends
+the destination address onto the packet. When the packet arrives at a router,
+the switch determines the appropriate outgoing link for the packet by examining
+the packet's destination address.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Traceroute is
+a little program that can run in any Internet host. When the user specifies
+a destination host name, the program sends multiple packets towards that
+destination. As these packets work their way towards the destinations,
+they pass through a series of routers. When a router receives one of these
+packets, it sends a little message back to the source. This message contains
+the name and address of the router.</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>More specifically,
+suppose there are <i>N-1</i> routers between the soruce and the destination.
+Then the source will send <i>N</i> packets into the network, with each
+packet addressed to the ultimate destination. These packets are also marked
+<i>1</i> through <i>N</i>, with the first of the <i>N</i> packets marked
+<i>1</i> and the last of the <i>N</i> packets marked <i>N</i>. When the
+<i>n</i>th router receives the <i>n</i>th packet marked <i>n</i>, the router
+destroys the packet and sends a message to the source. And when the destination
+host receives the <i>N</i>th packet, the destination destoys it as well,
+but again returns a message back to the source. The source records the
+time that elapses from when it sends a packet until when it receives the
+corresponding return message; it also records the name and address of the
+router (or the destination host) that returns the message. In this manner,
+the source can reconstruct the route taken by packets flowing from source
+to destination, and the source can determine the round-trip delays to all
+the intervening routers. Traceroute actually repeats the experiment just
+described three times, so the source actually sends <i>3*N</i> packets
+to the destination.</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>The <a href="http://www.rfc-editor.org/rfc/rfc1393.txt" target="_new">RFC
+1393</a> describes traceout in detail. The <a href="http://www.FreeSoft.org/CIE/index.htm" target="_new">Internet
+Encyclopedia</a> as also gives an <a href="http://www.FreeSoft.org/CIE/Topics/54.htm" target="_new">overview
+of how traceroute works</a>.</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Here is an example
+of the output of the traceroute program, where the route is being traced
+from the source host <i>eniac.seas.upenn.edu</i> (at the University of
+Pennsylvania) to <i>diane.ibp.fr</i> (at the University of Paris VI). The
+output has six columns: the first column is the<i> n</i> value described
+above, i.e., the number of the router along the route; the second column
+is the name of the router; the third column is the address of the router
+(of the form xxx.xxx.xxx.xxx); the last three columns are the round-trip
+delays for three experiments. If the source receives less than three messages
+from any given router, because of packet loss in the network, traceroute
+places an asterisk just after the router number and reports less than three
+round-trip times for that router.</font></font>
+<pre><font face="Arial, Helvetica, Sans-serif"><font size=+0>1 GW.CIS.UPENN.EDU (130.91.6.254) 3 ms 2 ms 1 ms
+2 DEFAULT7-GW.UPENN.EDU (165.123.247.8) 3 ms 1 ms 2 ms
+3 192.204.183.1 (192.204.183.1) 3 ms 4 ms 3 ms
+4 border2-hssi1-0.WestOrange.mci.net (204.70.66.5) 6 ms 6 ms 6 ms
+5 core1-fddi-1.WestOrange.mci.net (204.70.64.33) 7 ms 6 ms 6 ms
+6 somerouter.sprintlink.net (206.157.77.106) 16 ms 305 ms 192 ms
+7 somerouter.sprintlink.net (206.157.77.106) 20 ms 196 ms 18 ms
+8 sl-dc-6-H2/0-T3.sprintlink.net (144.228.10.33) 19 ms 18 ms 24 ms
+9 198.67.0.1 (198.67.0.1) 19 ms 24 ms 18 ms
+10 gsl-dc-3-Fddi0/0.gsl.net (204.59.144.197) 19 ms 18 ms 20 ms
+11 * raspail-ip.eurogate.net (194.206.207.6) 133 ms 94 ms
+12 raspail-ip2.eurogate.net (194.206.207.57) 93 ms 95 ms 97 ms
+13 194.206.207.17 (194.206.207.17) 200 ms 94 ms 209 ms
+14 stamand1.renater.ft.net (192.93.43.185) 105 ms 101 ms 105 ms
+15 stlambert.rerif.ft.net (192.93.43.117) 108 ms 102 ms 95 ms
+16 danton1.rerif.ft.net (193.48.53.50) 110 ms 97 ms 91 ms
+17 u-jussieu-paris.rerif.ft.net (193.48.58.122) 94 ms 96 ms 100 ms
+18 r-jusren.reseau.jussieu.fr (192.44.54.126) 100 ms 94 ms 100 ms
+19 r-ibp.reseau.jussieu.fr (134.157.254.250) 96 ms 100 ms 94 ms
+20 masi.ibp.fr (132.227.60.23) 121 ms 100 ms 97 ms
+21 * diane.ibp.fr (132.227.64.48) 105 ms 102 ms</font></font></pre>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>In the above trace
+there are no routers between the source and the destination. Most of these
+routers have a name, and all of them have addresses. For example, the name
+of router 8 is sl-dc-6-H2/0-T3.sprintlink.net and its address is 144.228.10.33.
+Looking at the data provided for this same router, we see that in the first
+of the three trials the roundtrip delay between the source and the router
+8 was 19 msec. The roundtrip delays for the subsequent two trials were
+18 and 24 msec. These roundtrip delays include packet propagation delays,
+router processing delays, and queueing delays due to congestion in the
+Internet. Because the congestion is varying with time, the roundtrip delay
+to a router <i>n</i> can actually be longer than the roundtrip delay to
+router <i>n+1</i>. Note in the above example that there is a big jump in
+the round-trip delay when going from router 10 to router 11. This is because
+the link between routers 10 and 11 is a transatlantic link.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Want to try
+out traceroute from some other starting points besides Tel-Aviv? Then visit
+<a href="http://www.traceroute.org" target="_new">http://www.traceroute.org</a>,
+which provides an extensive of list of sites offering route tracing.&nbsp;</font></font></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<table ALIGN=RIGHT BORDER=0 >
+<tr>
+<td><font size=-1>&copy; 2000-2001 by <a href="http://www.awlonline.com" target="new">Addison
+Wesley Longman</a></font>
+<br><font size=-1>A division of Pearson Education</font></td>
+</tr>
+</table>
+
+<p><!-- Code and architecture (c)2000-2001 Prentice Hall, Inc.  -->
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="chaptitle" content="1: Computer Networks and the Internet">
+   <meta name="book" content="Computer Networking: A Top-Down Approach Featuring the Internet">
+   <meta name="nickname" content="kurose-ross1">
+   <meta name="module" content="1.8: Internet Backbones, NAPs, and ISPs">
+   <meta name="chapnum" content="2">
+   <meta name="moduletype" content="custom8">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win95; U) [Netscape]">
+   <title>Computer Networking: A Top-Down Approach Featuring the Internet Chapter 2 -- 1.8: Internet Backbones, NAPs, and ISPs</title>
+<script language="JAVASCRIPT">
+<!-- // old browsers ignore me
+
+//  -->
+</script>
+<style TYPE="text/css">
+<!--
+BODY {font-family: Arial, sans-serif}
+P	 {font-family: Arial, sans-serif}
+TD	 {font-family: Arial, sans-serif}
+UL 	 {font-family: Arial, sans-serif}
+OL	 {font-family: Arial, sans-serif}
+DL	 {font-family: Arial, sans-serif}
+H1	 {font-family: Arial, sans-serif}
+H2	 {font-family: Arial, sans-serif}
+H3	 {font-family: Arial, sans-serif}
+H4	 {font-family: Arial, sans-serif}
+H5	 {font-family: Arial, sans-serif}
+H6	 {font-family: Arial, sans-serif}
+-->
+</style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#9999CC" vlink="#9999CC" alink="#FFFFFF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="560" >
+<tr>
+<td><img SRC="spacer.gif" BORDER=0 height=10 width=20></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td><script language="javascript">
+<!-- // working around a bug in the feedback templates -- picks up the wrong banner.tmpl
+if (2 == 0) {
+	document.write("About The Book");
+} else if (2 == 98) {
+	document.write("Instructor Resources");
+} else if (2 == 99) {
+	document.write("Audio Message Boards");
+} else {
+	document.write("Online Book");
+}
+// -->
+</script>
+
+<br><img SRC="spacer.gif" height=10 width=10></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td VALIGN=BOTTOM>
+<h2>
+<font face="Arial, Helvetica, sans-serif"><font color="#9999CC">1.8: Internet
+Backbones, NAPs, and ISPs</font></font></h2>
+</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=10 >
+<tr>
+<td><font face="Arial, Helvetica, Sans-serif"><font size=+0>Our discussion
+of layering in the previous section has perhaps given the impression that
+the Internet is a carefully organized and highly intertwined structure.
+This is certainly true in the sense that all of the network entities (end
+systems, routers, and bridges) use a common set of protocols, enabling
+the entities to communicate with each other. However, from a topological
+perspective, to many people the Internet seems to be growing in a chaotic
+manner, with new sections, branches, and wings popping up in random places
+on a daily basis. Indeed, unlike the protocols, the Internet's topology
+can grow and evolve without approval from a central authority. Let us now
+try to get a grip on the seemingly nebulous Internet topology.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>As we mentioned
+at the beginning of this chapter, the topology of the Internet is loosely
+hierarchical. Roughly speaking, from bottom-to-top the hierarchy consists
+of end systems (PCs, workstations, and so on) connected to local Internet
+service providers (ISPs). The local ISPs are in turn connected to regional
+ISPs, which are in turn connected to national and international ISPs. The
+national and international ISPs are connected together at the highest tier
+in the hierarchy. New tiers and branches can be added just as a new piece
+of Lego can be attached to an existing Lego construction.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>In this section
+we describe the topology of the Internet in the United States as of 2000.
+Let's begin at the top of the hierarchy and work our way down. Residing
+at the very top of the hierarchy are the national ISPs, which are called
+<b>national</b> <b>service providers (NSPs).</b> The NSPs form independent
+backbone networks that span North America (and typically extend abroad
+as well). Just as there are multiple long-distance telephone companies
+in the United States, there are multiple NSPs that compete with each other
+for traffic and customers. The existing NSPs include internetMCI, SprintLink,
+PSINet, UUNet Technologies, and AGIS. The NSPs typically have high-bandwidth
+transmission links, with bandwidths ranging from 1.5 Mbps to 622 Mbps and
+higher. Each <b>NSP</b> also has numerous hubs that interconnect its links
+and at which <b>regional ISPs </b>can tap into the NSP.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>The NSPs themselves
+must be interconnected to each other. To see this, suppose one regional
+ISP, say MidWestnet, is connected to the MCI NSP and another regional ISP,
+say EastCoastnet, is connected to Sprint's NSP. How can traffic be sent
+from MidWestnet to EastCoastnet? The solution is to introduce switching
+centers, called <b>network access points (NAPs),</b> which interconnect
+the NSPs, thereby allowing each regional ISP to pass traffic to any other
+regional ISP. To keep us all confused, some of the NAPs are not referred
+to as NAPs but instead as MAEs (metropolitan area exchanges). In the United
+States, many of the NAPs are run by RBOCs (regional Bell operating companies);
+for example, PacBell has a NAP in San Francisco and Ameritech has a NAP
+in Chicago. For a list of major NSPs (those connected into at least three
+MAPs/MAE's), see [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#haynal1999" target="_new">Haynal
+1999</a>]. In addition to connecting to each other at NAPs, NSPs can connect
+to each other through so-called private peering points; see Figure 1.26.
+For a discussion of NAPs as well as private peering among NSPs, see [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#huston1999a" target="_new">Huston
+1999a</a>].&nbsp;</font></font>
+<center>
+<p><img SRC="01-26.jpg" ALT="Figure 1.26" height=270 width=400>
+<br><font face="Arial, Helvetica, Sans-serif"><font size=-1><b>Figure 1.26:</b>
+Internet structure: Network of networks</font></font></center>
+
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Because the
+NAPs relay and switch tremendous volumes of Internet traffic, they are
+typically in themselves complex high-speed switching networks concentrated
+in a small geographical area (for example, a single building). Often the
+NAPs use high-speed ATM switching technology in the heart of the NAP, with
+IP riding on top of ATM. Figure 1.27 illustrates PacBell's San Francisco
+NAP. The details of Figure 1.27 are unimportant for us now; it is worthwhile
+to note, however, that the NSP hubs can themselves be complex data networks.&nbsp;</font></font>
+<center>
+<p><img SRC="01-27.jpg" ALT="Figure 1.27" height=386 width=400>
+<br><font face="Arial, Helvetica, Sans-serif"><font size=-1><b>Figure 1.27:</b>
+The PacBell NAP architecture (courtesy of the Pacific Bell Web site)</font></font></center>
+
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Running an NSP
+is not cheap. In June 1996, the cost of leasing 45 Mbps fiber optics from
+coast to coast, as well as the additional hardware required, was approximately
+$150,000 per month. And the fees that an NSP pays the NAPs to connect to
+the NAPs can exceed $300,000 annually. NSPs and NAPs also have significant
+capital costs in equipment for high-speed networking. An NSP earns money
+by charging a monthly fee to the regional ISPs that connect to it. The
+fee that an NSP charges to a regional ISP typically depends on the bandwidth
+of the connection between the regional ISP and the NSP; clearly a 1.5 Mbps
+connection would be charged less than a 45 Mbps connection. Once the fixed-bandwidth
+connection is in place, the regional ISP can pump and receive as much data
+as it pleases, up to the bandwidth of the connection, at no additional
+cost. If an NSP has significant revenues from the regional ISPs that connect
+to it, it may be able to cover the high capital and monthly costs of setting
+up and maintaining an NSP. For a discussion of the current practice of
+financial settlement among interconnected network providers, see [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#huston1999b" target="_new">Huston
+1999b</a>].&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>A regional ISP
+is also a complex network, consisting of routers and transmission links
+with rates ranging from 64 Kbps upward. A regional ISP typically taps into
+an NSP (at an NSP hub), but it can also tap directly into a NAP, in which
+case the regional ISP pays a monthly fee to a NAP instead of to an NSP.
+A regional ISP can also tap into the Internet backbone at two or more distinct
+points (for example, at an NSP hub or at a NAP). How does a regional ISP
+cover its costs? To answer this question, let's jump to the bottom of the
+hierarchy.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>End systems
+gain access to the Internet by connecting to a local ISP. Universities
+and corporations can act as local ISPs, but backbone service providers
+can also serve as a local ISP. Many local ISPs are small "mom and pop"
+companies, however. A popular Web site known simply as "The List" contains
+links to nearly 8,000 local, regional, and backbone ISPs [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#list1999" target="_new">List
+1999</a>]. The local ISPs tap into one of the regional ISPs in its region.
+Analogous to the fee structure between the regional ISP and the NSP, the
+local ISP pays a monthly fee to its regional ISP that depends on the bandwidth
+of the connection. Finally, the local ISP charges its customers (typically)
+a flat, monthly fee for Internet access: the higher the transmission rate
+of the connection, the higher the monthly fee.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>We conclude
+this section by mentioning that any one of us can become a local ISP as
+soon as we have an Internet connection. All we need to do is purchase the
+necessary equipment (for example, router and modem pool) that is needed
+to allow other users to connect to our so-called point of presence. Thus,
+new tiers and branches can be added to the Internet topology just as a
+new piece of Lego can be attached to an existing Lego construction.&nbsp;</font></font></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<table ALIGN=RIGHT BORDER=0 >
+<tr>
+<td><font size=-1>&copy; 2000-2001 by <a href="http://www.awlonline.com" target="new">Addison
+Wesley Longman</a></font>
+<br><font size=-1>A division of Pearson Education</font></td>
+</tr>
+</table>
+
+<p><!-- Code and architecture (c)2000-2001 Prentice Hall, Inc.  -->
+</body>
+</html>

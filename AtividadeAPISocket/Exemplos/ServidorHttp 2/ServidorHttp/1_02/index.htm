@@ -1,0 +1,191 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="chaptitle" content="1: Computer Networks and the Internet">
+   <meta name="book" content="Computer Networking: A Top-Down Approach Featuring the Internet">
+   <meta name="nickname" content="kurose-ross1">
+   <meta name="module" content="1.2: What Is a Protocol?">
+   <meta name="chapnum" content="2">
+   <meta name="moduletype" content="custom2">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win95; U) [Netscape]">
+   <title>Computer Networking: A Top-Down Approach Featuring the Internet Chapter 2 -- 1.2: What Is a Protocol?</title>
+<script language="JAVASCRIPT">
+<!-- // old browsers ignore me
+
+//  -->
+</script>
+<style TYPE="text/css">
+<!--
+BODY {font-family: Arial, sans-serif}
+P	 {font-family: Arial, sans-serif}
+TD	 {font-family: Arial, sans-serif}
+UL 	 {font-family: Arial, sans-serif}
+OL	 {font-family: Arial, sans-serif}
+DL	 {font-family: Arial, sans-serif}
+H1	 {font-family: Arial, sans-serif}
+H2	 {font-family: Arial, sans-serif}
+H3	 {font-family: Arial, sans-serif}
+H4	 {font-family: Arial, sans-serif}
+H5	 {font-family: Arial, sans-serif}
+H6	 {font-family: Arial, sans-serif}
+-->
+</style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#9999CC" vlink="#9999CC" alink="#FFFFFF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="560" >
+<tr>
+<td><img SRC="spacer.gif" BORDER=0 height=10 width=20></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td><script language="javascript">
+<!-- // working around a bug in the feedback templates -- picks up the wrong banner.tmpl
+if (2 == 0) {
+	document.write("About The Book");
+} else if (2 == 98) {
+	document.write("Instructor Resources");
+} else if (2 == 99) {
+	document.write("Audio Message Boards");
+} else {
+	document.write("Online Book");
+}
+// -->
+</script>
+
+<br><img SRC="spacer.gif" height=10 width=10></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td VALIGN=BOTTOM>
+<h2>
+<font face="Arial, Helvetica, sans-serif"><font color="#9999CC">1.2: What
+Is a Protocol?</font></font></h2>
+</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=10 >
+<tr>
+<td><font face="Arial, Helvetica, Sans-serif"><font size=+0>Now that we've
+got a bit of a feel for what the Internet is, let's consider another important
+buzzword in computer networking: "protocol." What <i>is</i> a protocol?
+What does a protocol <i>do?</i> How would you recognize a protocol if you
+met one?&nbsp;</font></font>
+<h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>1.2.1: A Human
+Analogy</font></font></h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>It is probably
+easiest to understand the notion of a computer network protocol by first
+considering some human analogies, since we humans execute protocols all
+of the time. Consider what you do when you want to ask someone for the
+time of day. A typical exchange is shown in Figure 1.2. Human protocol
+(or good manners, at least) dictates that one first offers a greeting (the
+first "Hi" in Figure 1.2) to initiate communication with someone else.
+The typical response to a "Hi" message (at least outside of New York City)
+is a returned "Hi" message. Implicitly, one then takes a cordial "Hi" response
+as an indication that one can proceed ahead and ask for the time of day.
+A different response to the initial "Hi" (such as "Don't bother me!" or
+"I don't speak English," or an unprintable reply that one might receive
+in New York City) might indicate an unwillingness or inability to communicate.
+In this case, the human protocol would be to not ask for the time of day.
+Sometimes one gets no response at all to a question, in which case one
+typically gives up asking that person for the time. Note that in our human
+protocol, <i>there are specific messages we send, and specific actions
+we take in response to the received reply messages or other events (such
+as no reply within some given amount of time). </i>Clearly transmitted
+and received messages, and actions taken when these messages are sent or
+received or other events occur, play a central role in a human protocol.
+If people run different protocols (for example, if one person has manners
+but the other does not, or if one understands the concept of time and the
+other does not) the protocols do not interoperate and no useful work can
+be accomplished. The same is true in networking--it takes two (or more)
+communicating entities running the same protocol in order to accomplish
+a task.&nbsp;</font></font>
+<center>
+<p><img SRC="01-02.jpg" ALT="Figure 1.2" height=234 width=450>
+<br><font face="Arial, Helvetica, Sans-serif"><font size=-1><b>Figure 1.2:</b>
+A human protocol and a computer network protocol</font></font></center>
+
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Let's consider
+a second human analogy. Suppose you're in a college class (a computer networking
+class, for example!). The teacher is droning on about protocols and you're
+confused. The teacher stops to ask, "Are there any questions?" (a message
+that is transmitted to, and received by, all students who are not sleeping).
+You raise your hand (transmitting an implicit message to the teacher).
+Your teacher acknowledges you with a smile, saying "Yes . . ." (a transmitted
+message encouraging you to ask your question--teachers <i>love</i> to be
+asked questions) and you then ask your question (that is, transmit your
+message to your teacher). Your teacher hears your question (receives your
+question message) and answers (transmits a reply to you). Once again, we
+see that the transmission and receipt of messages, and a set of conventional
+actions taken when these messages are sent and received, are at the heart
+of this question-and-answer protocol.&nbsp;</font></font>
+<h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>1.2.2: Network
+Protocols</font></font></h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>A network protocol
+is similar to a human protocol, except that the entities exchanging messages
+and taking actions are hardware or software components of a computer network,
+components that we will study shortly in the following sections. All activity
+in the Internet that involves two or more communicating remote entities
+is governed by a protocol. Protocols in routers determine a packet's path
+from source to destination; hardware-implemented protocols in the network
+interface cards of two physically connected computers control the flow
+of bits on the "wire" between the two computers; a congestion-control protocol
+controls the rate at which packets are transmitted between sender and receiver.
+Protocols are running everywhere in the Internet, and consequently much
+of this book is about computer network protocols.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>As an example
+of a computer network protocol with which you are probably familiar, consider
+what happens when you make a request to a Web server, that is, when you
+type in the URL of a Web page into your Web browser. The scenario is illustrated
+in the right half of Figure 1.2. First, your computer will send a "connection
+request" message to the Web server and wait for a reply. The Web server
+will eventually receive your connection request message and return a "connection
+reply" message. Knowing that it is now OK to request the Web document,
+your computer then sends the name of the Web page it wants to fetch from
+that Web server in a "get" message. Finally, the Web server returns the
+contents of the Web document to your computer.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Given the human
+and networking examples above, the exchange of messages and the actions
+taken when these messages are sent and received are the key defining elements
+of a protocol:&nbsp;</font></font>
+<blockquote><i><font face="Arial, Helvetica, Sans-serif"><font size=+0>A
+<b>protocol</b> defines the format and the order of messages exchanged
+between two or more communicating entities, as well as the actions taken
+on the transmission and/or receipt of a message or other event.</font></font></i></blockquote>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>The Internet, and
+computer networks in general, make extensive use of protocols. Different
+protocols are used to accomplish different communication tasks. As you
+read through this book, you will learn that some protocols are simple and
+straightforward, while others are complex and intellectually deep. Mastering
+the field of computer networking is equivalent to understanding the what,
+why, and how of networking protocols.&nbsp;</font></font></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<table ALIGN=RIGHT BORDER=0 >
+<tr>
+<td><font size=-1>&copy; 2000-2001 by <a href="http://www.awlonline.com" target="new">Addison
+Wesley Longman</a></font>
+<br><font size=-1>A division of Pearson Education</font></td>
+</tr>
+</table>
+
+<p><!-- Code and architecture (c)2000-2001 Prentice Hall, Inc.  -->
+</body>
+</html>

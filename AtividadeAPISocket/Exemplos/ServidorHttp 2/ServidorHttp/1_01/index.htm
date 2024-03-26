@@ -1,0 +1,348 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="chaptitle" content="1: Computer Networks and the Internet">
+   <meta name="book" content="Computer Networking: A Top-Down Approach Featuring the Internet">
+   <meta name="nickname" content="kurose-ross1">
+   <meta name="module" content="1.1: What Is the Internet?">
+   <meta name="chapnum" content="2">
+   <meta name="moduletype" content="custom1">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win95; U) [Netscape]">
+   <title>Computer Networking: A Top-Down Approach Featuring the Internet Chapter 2 -- 1.1: What Is the Internet?</title>
+<script language="JAVASCRIPT">
+<!-- // old browsers ignore me
+
+//  -->
+</script>
+<style TYPE="text/css">
+<!--
+BODY {font-family: Arial, sans-serif}
+P	 {font-family: Arial, sans-serif}
+TD	 {font-family: Arial, sans-serif}
+UL 	 {font-family: Arial, sans-serif}
+OL	 {font-family: Arial, sans-serif}
+DL	 {font-family: Arial, sans-serif}
+H1	 {font-family: Arial, sans-serif}
+H2	 {font-family: Arial, sans-serif}
+H3	 {font-family: Arial, sans-serif}
+H4	 {font-family: Arial, sans-serif}
+H5	 {font-family: Arial, sans-serif}
+H6	 {font-family: Arial, sans-serif}
+-->
+</style>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#9999CC" vlink="#9999CC" alink="#FFFFFF">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="560" >
+<tr>
+<td><img SRC="spacer.gif" BORDER=0 height=10 width=20></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td><script language="javascript">
+<!-- // working around a bug in the feedback templates -- picks up the wrong banner.tmpl
+if (2 == 0) {
+	document.write("About The Book");
+} else if (2 == 98) {
+	document.write("Instructor Resources");
+} else if (2 == 99) {
+	document.write("Audio Message Boards");
+} else {
+	document.write("Online Book");
+}
+// -->
+</script>
+
+<br><img SRC="spacer.gif" height=10 width=10></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td VALIGN=BOTTOM>
+<h2>
+<font face="Arial, Helvetica, sans-serif"><font color="#9999CC">1.1: What
+Is the Internet?</font></font></h2>
+</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=10 >
+<tr>
+<td><font face="Arial, Helvetica, Sans-serif"><font size=+0>In this book
+we use the public Internet, a specific computer network (and one which
+probably most readers have used), as our principle vehicle for discussing
+computer networking protocols. But what is the Internet? We would like
+to be able to give you a one-sentence definition of the Internet, a definition
+that you can take home and share with your family and friends. Alas, the
+Internet is very complex, both in terms of its hardware and software components,
+as well as in the services it provides.&nbsp;</font></font>
+<h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>1.1.1: A Nuts and
+Bolts Description</font></font></h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>Instead of giving
+a one-sentence definition, let's try a more descriptive approach. There
+are a couple of ways to do this. One way is to describe the nuts and bolts
+of the Internet, that is, the basic hardware and software components that
+make up the Internet. Another way is to describe the Internet in terms
+of a networking infrastructure that provides services to distributed applications.
+Let's begin with the nuts-and-bolts description, using Figure 1.1 to illustrate
+our discussion.&nbsp;</font></font>
+<center>
+<p><img SRC="01-01.jpg" ALT="Figure 1.1" height=427 width=480>
+<br><font face="Arial, Helvetica, Sans-serif"><font size=-1><b>Figure 1.1:</b>
+Some pieces of the Internet</font></font></center>
+
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>The public Internet
+is a world-wide <b>computer network,</b> that is, a network that interconnects
+millions of computing devices throughout the world. Most of these computing
+devices are traditional desktop PCs, Unix-based workstations, and so called
+servers that store and transmit information such as Web (WWW) pages and
+e-mail messages. Increasingly, nontraditional computing devices such as
+Web TVs, mobile computers, pagers, and toasters are being connected to
+the Internet. (Toasters are not the only rather unusual devices to have
+been hooked up to the Internet; see the "The Future of the Living Room"
+[<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#greenberg1997" target="_new">Greenberg
+1997</a>].) In the Internet jargon, all of these devices are called <b>hosts</b>
+or <b>end systems.</b> The Internet applications with which many of us
+are familiar, such as the Web and e-mail, are <b>network application programs</b>
+that run on such end systems. We will look into Internet end systems in
+more detail in Section 1.3 and then delve deeply into the study of network
+applications in Chapter 2.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>End systems,
+as well as most other "pieces" of the Internet, run <b>protocols</b> that
+control the sending and receiving of information within the Internet. <b>TCP</b>
+(the Transmission Control Protocol) and <b>IP</b> (the Internet Protocol)
+are two of the most important protocols in the Internet. The Internet's
+principal protocols are collectively known as <b>TCP/IP. </b>We begin looking
+into protocols in Section 1.2. But that's just a start--much of this book
+is concerned with computer network protocols!&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>End systems
+are connected together by <b>communication links.</b> We'll see in Section
+1.5 that there are many types of communication links. Links are made up
+of different types of <b>physical media,</b> including coaxial cable, copper
+wire, fiber optics, and radio spectrum. Different links can transmit data
+at different rates. The link transmission rate is often called the <b>link
+bandwidth</b> and is typically measured in bits/second.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Usually, end
+systems are not directly attached to each other via a single communication
+link. Instead, they are indirectly connected to each other through intermediate
+switching devices known as <b>routers.</b> A router takes information arriving
+on one of its incoming communication links and then forwards that information
+on one of its outgoing communication links. The <b>IP protocol</b> specifies
+the format of the information that is sent and received among routers and
+end systems. The path that transmitted information takes from the sending
+end system, through a series of communications links and routers, to the
+receiving end system is known as a <b>route</b> or <b>path</b> through
+the network. We introduce routing in more detail in Section 1.4 and study
+the algorithms used to determine routes, as well as the internal structure
+of a router itself, in Chapter 4.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>Rather than
+provide a <i>dedicated</i> path between communicating end systems, the
+Internet uses a technique known as <b>packet switching</b> that allows
+multiple communicating end systems to share a path, or parts of a path,
+at the same time. The earliest ancestors of the Internet were the first
+packet-switched networks.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>The Internet
+is really a network of networks. That is, the Internet is an interconnected
+set of privately and publicly owned and managed networks. Any network connected
+to the Internet must run the IP protocol and conform to certain naming
+and addressing conventions. Other than these few constraints, however,
+a network operator can configure and run its network (that is, its little
+piece of the Internet) however it chooses. Because of the universal use
+of the IP protocol in the Internet, the IP protocol is sometimes referred
+to as the <b>Internet dial tone.</b></font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>The topology
+of the Internet, that is, the structure of the interconnection among the
+various pieces of the Internet, is loosely hierarchical. Roughly speaking,
+from bottom-to-top, the hierarchy consists of end systems connected to
+local <b>Internet service providers (ISPs)</b> though <b>access networks.</b>
+An access network may be a so-called local area network within a company
+or university, a dial telephone line with a modem, or a high-speed cable-based
+or phone-based access network. Local ISPs are in turn connected to regional
+ISPs, which are in turn connected to national and international ISPs. The
+national and international ISPs are connected together at the highest tier
+in the hierarchy. New tiers and branches (that is, new networks, and new
+networks of networks) can be added just as a new piece of Lego can be attached
+to an existing Lego construction. In the first half of 1996, approximately
+40,000 <i>new</i> networks were added to the Internet [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#network1996" target="_new">Network
+1996</a>]--an astounding growth rate.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>At the technical
+and developmental level, the Internet is made possible through creation,
+testing, and implementation of <b>Internet standards.</b> These standards
+are developed by the Internet Engineering Task Force (IETF). The IETF standards
+documents are called <b>RFCs</b> (request for comments). RFCs started out
+as general request for comments (hence the name) to resolve architecture
+problems that faced the precursor to the Internet. RFCs, though not formally
+standards, have evolved to the point where they are cited as such. RFCs
+tend to be quite technical and detailed. They define protocols such as
+TCP, IP, HTTP (for the Web), and SMTP (for open-standards e-mail). There
+are more than 2,000 different RFCs.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>The public Internet
+(that is, the global network of networks discussed above) is the network
+that one typically refers to as<i> the</i> Internet. There are also many
+private networks, such as certain corporate and government networks, whose
+hosts are not accessible from (that is, they cannot exchange messages with)
+hosts outside of that private network. These private networks are often
+referred to as <b>intranets,</b> as they often use the same Internet technology
+(for example, the same types of host, routers, links, protocols, and standards)
+as the public Internet.&nbsp;</font></font>
+<h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>1.1.2: A Service
+Description</font></font></h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>The preceding discussion
+has identified many of the pieces that make up the Internet. Let's now
+leave the nuts-and-bolts description and take a more abstract, service-oriented
+view:&nbsp;</font></font>
+<ul>
+<li>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>The Internet allows
+<b>distributed
+applications</b> running on its end systems to exchange data with each
+other. These applications include remote login, file transfer, electronic
+mail, audio and video streaming, real-time audio and video conferencing,
+distributed games, the World Wide Web, and much, much more [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#attapps1998" target="_new">AT&amp;T
+Apps 1998</a>]. It is worth emphasizing that the Web is not a separate
+network but rather just one of many distributed applications that use the
+communication services provided by the Internet. The Web <i>could</i> also
+run over a network besides the Internet. One reason that the Internet is
+the communication medium of choice for the Web, however, is that no other
+existing packet-switched network connects more than 43 million [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#network1999" target="_new">Network
+1999</a>] computers together and has over 100 million users [<a href="http://occ.awlonline.com/bookbind/pubbooks/kurose-ross1/chapter2/custom11/deluxe-content.html#almanac1998" target="_new">Almanac
+1998</a>]. (By the way, determining the number of computers hooked up to
+the Internet is a very difficult task, as no one is responsible for maintaining
+a list of who's connected. When a new network is added to the Internet,
+its administrators do not need to report which end systems are connected
+to that network. Similarly, an exiting network does not report its changes
+in connected end systems to any central authority.)&nbsp;</font></font></li>
+
+<li>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>The Internet provides
+two services to its distributed applications: a <b>connection-oriented
+service</b> and a <b>connectionless service.</b> Loosely speaking, connection-oriented
+service guarantees that data transmitted from a sender to a receiver will
+eventually be delivered to the receiver in order and in its entirety. Connectionless
+service does not make any guarantees about eventual delivery. Typically,
+a distributed application makes use of one or the other of these two services
+and not both. We examine these two different services in Section 1.3 and
+in great detail in Chapter 3.&nbsp;</font></font></li>
+
+<li>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>Currently, the
+Internet does not provide a service that makes promises about <i>how long
+</i>it
+will take to deliver the data from sender to receiver. And except for increasing
+your access bit rate to your Internet service provider, you currently cannot
+obtain better service (for example, shorter delays) by paying more--a state
+of affairs that some (particularly Americans!) find odd. We'll take a look
+at state-of-the art Internet research that is aimed at changing this situation
+in Chapter 6.&nbsp;</font></font></li>
+</ul>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>Our second description
+of the Internet--in terms of the services it provides to distributed applications--is
+a nontraditional, but important, one. Increasingly, advances in the nuts-and-bolts
+components of the Internet are being driven by the needs of new applications.
+So it's important to keep in mind that the Internet is an <i>infrastructure</i>
+in which new applications are being constantly invented and deployed.&nbsp;</font></font>
+<p><font face="Arial, Helvetica, Sans-serif"><font size=+0>We have given
+two descriptions of the Internet, one in terms of its hardware and software
+components, the other in terms of the services it provides to distributed
+applications. But perhaps you are still confused as to what the Internet
+is. What is packet switching, TCP/IP, and connection-oriented service?
+What are routers? What kinds of communication links are present in the
+Internet? What is a distributed application? What does the Internet have
+to do with children's toys? If you feel a bit overwhelmed by all of this
+now, don't worry--the purpose of this book is to introduce you to both
+the nuts and bolts of the Internet, as well as the principles that govern
+how and why it works. We will explain these important terms and questions
+in the subsequent sections and chapters.&nbsp;</font></font>
+<h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>1.1.3: Some Good
+Hyperlinks</font></font></h3>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>As every Internet
+researcher knows, some of the best and most accurate information about
+the Internet and its protocols is not in hard-copy books, journals, or
+magazines. The best stuff about the Internet is in the Internet itself!
+Of course, there's really too much material to sift through, and sometimes
+the gems are few and far between. Below, we list a few generally excellent
+Web sites for network- and Internet-related material. Throughout the book,
+we will also present links to relevant, high quality URLs that provide
+background, original, or advanced material related to the particular topic
+under study. Here is a set of key links that you may want to consult while
+you proceed through this book:&nbsp;</font></font>
+<ul>
+<li>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>Internet Engineering
+Task Force (IETF), <a href="http://www.ietf.org" target="_new">http://www.ietf.org</a>:
+The IETF is an open international community concerned with the development
+and operation of the Internet and its architecture. The IETF was formally
+established by the Internet Architecture Board (IAB), <a href="http://www.isi.edu/iab" target="_new">http://www.isi.edu/iab</a>,
+in 1986. The IETF meets three times a year; much of its ongoing work is
+conducted via mailing lists by working groups. Typically, based upon previous
+IETF proceedings, working groups will convene at meetings to discuss the
+work of the IETF working groups. The IETF is administered by the Internet
+Society, <a href="http://www.isoc.org" target="_new">http://www.isoc.org</a>,
+whose Web site contains lots of high-quality, Internet-related material.</font></font></li>
+
+<li>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>The World Wide
+Web Consortium (W3C), <a href="http://www.w3.org/Consortium" target="_new">http://www.w3.org/Consortium</a>:The
+W3C was founded in 1994 to develop common protocols for the evolution of
+the World Wide Web. This is an outstanding site with fascinating information
+on emerging Web technologies, protocols, and standards.</font></font></li>
+
+<li>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>The Association
+for Computing Machinery (ACM), <a href="http://www.acm.org" target="_new">http://www.acm.org</a>,
+and the Institute of Electrical and Electronics Engineers (IEEE), <a href="http://www.ieee.org" target="_new">http://www.ieee.org</a>:
+These are the two main international professional societies that have technical
+conferences, magazines, and journals in the networking area. The ACM Special
+Interest Group in Data Communications (SIGCOMM), <a href="http://www.acm.org/sigcomm" target="_new">http://www.acm.org/sigcomm</a>,
+the IEEE Communications Society, <a href="http://www.comsoc.org" target="_new">http://www.comsoc.org</a>,
+and the IEEE Computer Society, <a href="http://www.computer.org" target="_new">http://www.computer.org</a>,
+are the groups within these bodies whose efforts are most closely related
+to networking.</font></font></li>
+
+<li>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>Data communications
+tutorials from the online magazine Data Communications, <a href="http://www.data.com" target="_new">http://www.data.com</a>:
+One of the better magazines for data communications technology. The site
+includes many excellent tutorials.&nbsp;</font></font></li>
+
+<li>
+<font face="Arial, Helvetica, Sans-serif"><font size=+0>Media History Project,
+<a href="http://www.mediahistory.com" target="_new">http://www.mediahistory.com</a>:
+You may be wondering how the Internet got started. Or you may wonder how
+electrical communications got started in the first place. And you may even
+wonder about what preceded electrical communications! Fortunately, the
+Web contains an abundance of excellent resources available on these subjects.
+This site promotes the study of media history from petroglyphs to pixels.
+It covers the history of digital media, mass media, electrical media, print
+media, and even oral and scribal culture.</font></font></li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<table ALIGN=RIGHT BORDER=0 >
+<tr>
+<td><font size=-1>&copy; 2000-2001 by <a href="http://www.awlonline.com" target="new">Addison
+Wesley Longman</a></font>
+<br><font size=-1>A division of Pearson Education</font></td>
+</tr>
+</table>
+
+<p><!-- Code and architecture (c)2000-2001 Prentice Hall, Inc.  -->
+</body>
+</html>
