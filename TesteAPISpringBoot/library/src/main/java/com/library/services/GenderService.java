@@ -15,13 +15,12 @@ public class GenderService implements GenderServiceInterface{
     private GenderRepository genderRepository;
 
     public void createGender(GenderDto genderDto ){
-        System.out.println(genderDto);
-        var genderEP = DtoToEntityPersistence(genderDto, new Gender());
+        var genderEP = new Gender(genderDto);
         genderRepository.save(genderEP);
     }
 
     private Gender DtoToEntityPersistence(GenderDto genderDto, Gender genderEntity ){
-        genderEntity.setDescription(genderDto.getDescription());
+        genderEntity.setDescription(genderDto.description());
         return genderEntity;
     }
 
@@ -30,4 +29,24 @@ public class GenderService implements GenderServiceInterface{
         Optional<Gender> genderEP= genderList.stream().findFirst();
         return genderEP.map(GenderDto::new).orElse(null);
     }
+
+    public List<GenderDto> getAllGenders() {
+        List<Gender> genderList = genderRepository.findAll();
+        return GenderDto.convert(genderList);
+    }
+
+    public GenderDto updateGender(GenderDto genderDto, Long id) {
+        if(genderRepository.existsById(id)){
+            genderRepository.save(new Gender(genderDto));
+            return genderDto;
+        }
+        return null;
+    }
+
+    public void deleteGender(Long genderId) {
+        if( genderRepository.existsById(genderId)){
+            genderRepository.deleteById(genderId);
+        }
+    }
+
 }
