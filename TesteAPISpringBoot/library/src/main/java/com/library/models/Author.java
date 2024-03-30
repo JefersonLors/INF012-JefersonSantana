@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Entity(name="Authors")
 public class Author {
     @Id
@@ -31,5 +35,9 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static List<Author> toEntityList( List<AuthorDto> authorDtoList ){
+        return authorDtoList.stream().map(Author::new).collect(Collectors.toList());
     }
 }

@@ -37,7 +37,7 @@ public class Gender {
         this.description = description;
     }
 
-    public static List<Gender> toGender(List<GenderDto> genderDtoList){
+    public static List<Gender> toEntityList(List<GenderDto> genderDtoList){
         return genderDtoList.stream().map(Gender::new).collect(Collectors.toList());
     }
 }

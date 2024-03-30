@@ -1,5 +1,6 @@
 package com.library.models;
 
+import com.library.dtos.BookDto;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -15,6 +16,15 @@ public class Book {
     @ManyToMany
     private List<Gender> genders;
 
+    public Book(){}
+
+    public Book(BookDto bookDto){
+        this.id = bookDto.id();
+        this.authors = Author.toEntityList(bookDto.authors());
+        this.genders = Gender.toEntityList(bookDto.genders());
+        this.name = bookDto.name();
+        this.synopsis = bookDto.synopsis();
+    }
     public Long getId() {
         return id;
     }

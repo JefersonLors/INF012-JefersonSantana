@@ -8,7 +8,7 @@ public record GenderDto( Long id, String description) {
     public GenderDto(Gender genderEntity){
         this(genderEntity.getId(), genderEntity.getDescription());
     }
-    public static List<GenderDto> convert(List<Gender> genderList){
+    public static List<GenderDto> toDtoList(List<Gender> genderList){
         return genderList.stream().map(GenderDto::new).collect(Collectors.toList());
     }
 }

@@ -32,7 +32,7 @@ public class GenderService implements GenderServiceInterface{
 
     public List<GenderDto> getAllGenders() {
         List<Gender> genderList = genderRepository.findAll();
-        return GenderDto.convert(genderList);
+        return GenderDto.toDtoList(genderList);
     }
 
     public GenderDto updateGender(GenderDto genderDto, Long id) {
