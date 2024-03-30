@@ -15,7 +15,7 @@ public class BookDto {
     public BookDto(Book bookEntity){
         this.id = bookEntity.getId();
         this.name = bookEntity.getName();
-        this.authors = AuthorDto.convert(bookEntity.getAuthors());
+        this.authors = AuthorDto.toAuthorDto(bookEntity.getAuthors());
         this.synopsis = bookEntity.getSynopsis();
         this.genders = GenderDto.convert(bookEntity.getGenders());
     }

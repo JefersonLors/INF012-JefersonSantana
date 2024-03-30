@@ -1,7 +1,6 @@
 package com.library.controllers;
 
 import com.library.dtos.GenderDto;
-import com.library.models.Gender;
 import com.library.services.GenderServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,13 +25,13 @@ public class GenderController {
     public List<GenderDto> getAllGenders(){
         return genderService.getAllGenders();
     }
-    @PutMapping
+    @PutMapping("/{genderId}")
     public GenderDto updateGender(@RequestBody GenderDto genderDto,
-                                  @RequestParam Long id){
-        return genderService.updateGender(genderDto, id);
+                                  @PathVariable Long genderId){
+        return genderService.updateGender(genderDto, genderId);
     }
-    @DeleteMapping
-    public void deleteGender(@RequestParam Long genderId){
+    @DeleteMapping("/{genderId}")
+    public void deleteGender(@PathVariable Long genderId){
         genderService.deleteGender(genderId);
     }
 }

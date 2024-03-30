@@ -1,5 +1,6 @@
 package com.library.models;
 
+import com.library.dtos.AuthorDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +13,11 @@ public class Author {
     private Long id;
     private String name;
 
+    public Author(AuthorDto authorDto){
+        this.id = authorDto.id();
+        this.name = authorDto.name();
+    }
+    public Author(){}
     public Long getId() {
         return id;
     }

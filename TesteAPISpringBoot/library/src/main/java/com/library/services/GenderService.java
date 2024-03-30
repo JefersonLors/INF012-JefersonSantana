@@ -2,7 +2,7 @@ package com.library.services;
 
 import com.library.dtos.GenderDto;
 import com.library.models.Gender;
-import com.library.repositories.GenderRepository;
+import com.library.repositories.GenderRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class GenderService implements GenderServiceInterface{
     @Autowired
-    private GenderRepository genderRepository;
+    private GenderRepositoryInterface genderRepository;
 
     public void createGender(GenderDto genderDto ){
         var genderEP = new Gender(genderDto);
