@@ -1,7 +1,6 @@
 package com.library.dtos;
 
 import com.library.models.Book;
-import com.library.models.Gender;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +10,7 @@ public record BookDto (Long id, String name, String synopsis, List<AuthorDto> au
         this(bookEntity.getId(),
                 bookEntity.getName(),
                 bookEntity.getSynopsis(),
-                AuthorDto.toAuthorDto(bookEntity.getAuthors()),
+                AuthorDto.toDtoList(bookEntity.getAuthors()),
                 GenderDto.toDtoList(bookEntity.getGenders()));
     }
     public static List<BookDto> toDtoList(List<Book> bookList){

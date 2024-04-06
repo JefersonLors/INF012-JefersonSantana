@@ -14,14 +14,9 @@ public class GenderService implements GenderServiceInterface{
     @Autowired
     private GenderRepositoryInterface genderRepository;
 
-    public void createGender(GenderDto genderDto ){
+    public GenderDto createGender(GenderDto genderDto ){
         var genderEP = new Gender(genderDto);
-        genderRepository.save(genderEP);
-    }
-
-    private Gender DtoToEntityPersistence(GenderDto genderDto, Gender genderEntity ){
-        genderEntity.setDescription(genderDto.description());
-        return genderEntity;
+        return new GenderDto(genderRepository.save(genderEP));
     }
 
     public GenderDto getGenderById( Long genderId ){

@@ -16,8 +16,6 @@ public class Book {
     @ManyToMany
     private List<Gender> genders;
 
-    public Book(){}
-
     public Book(BookDto bookDto){
         this.id = bookDto.id();
         this.authors = Author.toEntityList(bookDto.authors());
@@ -25,6 +23,8 @@ public class Book {
         this.name = bookDto.name();
         this.synopsis = bookDto.synopsis();
     }
+    public Book(){}
+
     public Long getId() {
         return id;
     }

@@ -14,13 +14,14 @@ public class AuthorService implements AuthorServiceInterface{
     @Autowired
     private AuthorRepositoryInterface authorRepository;
     public AuthorDto getAuthorById(Long authorId) {
-        Optional<Author> author = authorRepository.findById(authorId);
+        System.out.println("o id do autor: " + authorId);
+        Optional<Author> author = authorRepository.findById(authorId).stream().findFirst();
         return author.map(AuthorDto::new).orElse(null);
     }
 
     public List<AuthorDto> getAllAuthors() {
         List<Author> authors = authorRepository.findAll();
-        return AuthorDto.toAuthorDto(authors);
+        return AuthorDto.toDtoList(authors);
     }
 
     public AuthorDto createAuthor(AuthorDto authorDto) {

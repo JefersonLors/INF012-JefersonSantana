@@ -14,8 +14,8 @@ public class GenderController {
     private GenderServiceInterface genderService;
 
     @PostMapping
-    public void createGender(@RequestBody GenderDto genderDto){
-        genderService.createGender(genderDto);
+    public GenderDto createGender(@RequestBody GenderDto genderDto){
+        return genderService.createGender(genderDto);
     }
     @GetMapping("/genderId")
     public GenderDto getGenderById(@RequestParam Long genderId){
