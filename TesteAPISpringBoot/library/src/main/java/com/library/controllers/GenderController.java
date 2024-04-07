@@ -2,7 +2,9 @@ package com.library.controllers;
 
 import com.library.dtos.GenderDto;
 import com.library.services.GenderServiceInterface;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,25 +15,28 @@ public class GenderController {
     @Autowired
     private GenderServiceInterface genderService;
 
-    @PostMapping
-    public GenderDto createGender(@RequestBody GenderDto genderDto){
-        return genderService.createGender(genderDto);
-    }
     @GetMapping("/genderId")
-    public GenderDto getGenderById(@RequestParam Long genderId){
+    public ResponseEntity<GenderDto> getGenderById(@RequestParam Long genderId){
         return genderService.getGenderById(genderId);
     }
     @GetMapping
-    public List<GenderDto> getAllGenders(){
+    public ResponseEntity<List<GenderDto>> getAllGenders(){
         return genderService.getAllGenders();
     }
+    @PostMapping
+    @Transactional
+    public ResponseEntity<GenderDto> createGender(@RequestBody GenderDto genderDto){
+        return genderService.createGender(genderDto);
+    }
     @PutMapping("/{genderId}")
-    public GenderDto updateGender(@RequestBody GenderDto genderDto,
+    @Transactional
+    public ResponseEntity<GenderDto> updateGender(@RequestBody GenderDto genderDto,
                                   @PathVariable Long genderId){
         return genderService.updateGender(genderDto, genderId);
     }
     @DeleteMapping("/{genderId}")
-    public void deleteGender(@PathVariable Long genderId){
-        genderService.deleteGender(genderId);
+    @Transactional
+    public ResponseEntity<GenderDto> deleteGender(@PathVariable Long genderId){
+        return genderService.deleteGender(genderId);
     }
 }

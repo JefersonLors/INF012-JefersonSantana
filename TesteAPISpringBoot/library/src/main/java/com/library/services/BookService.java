@@ -4,6 +4,8 @@ import com.library.dtos.BookDto;
 import com.library.models.Book;
 import com.library.repositories.BookRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,38 +18,43 @@ public class BookService implements BookServiceInterface {
     private BookRepositoryInterface bookRepository;
 
     @Override
-    public BookDto getBookById(Long bookId) {
+    public ResponseEntity<BookDto> getBookById(Long bookId) {
         Optional<Book> book = bookRepository.findById(bookId);
-        return book.map(BookDto::new).orElse(null);
+        return book.map(value -> new ResponseEntity<>(new BookDto(value), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @Override
-    public List<BookDto> getAllBooks() {
-        List<Book> bookList = bookRepository.findAll();
-        return bookList.stream().map(BookDto::new).collect(Collectors.toList());
+    public ResponseEntity<List<BookDto>> getAllBooks() {
+        List<BookDto> bookList = bookRepository.findAll().stream()
+                                                         .map(BookDto::new)
+                                                         .toList();
+        return ResponseEntity.ok(bookList);
     }
 
     @Override
-    public BookDto createBook(BookDto bookDto) {
+    public ResponseEntity<BookDto> createBook(BookDto bookDto) {
         Book book = bookRepository.save(new Book(bookDto));
-        return new BookDto(book);
+        return new ResponseEntity<>(new BookDto(book), HttpStatus.CREATED);
     }
 
     @Override
-    public BookDto updateBook(BookDto bookDto, Long bookId) {
+    public ResponseEntity<BookDto> updateBook(BookDto bookDto, Long bookId) {
         if( bookRepository.existsById(bookId)){
             Book bookEntity = new Book(bookDto);
             bookEntity.setId(bookId);
-            bookRepository.save(bookEntity);
-            return bookDto;
+            Book updatedBook = bookRepository.save(bookEntity);
+            return ResponseEntity.ok(new BookDto(updatedBook));
         }
-        return null;
+        return ResponseEntity.notFound().build();
     }
 
     @Override
-    public void deleteBook(Long bookId) {
+    public ResponseEntity<BookDto> deleteBook(Long bookId) {
         if( bookRepository.existsById(bookId)){
             bookRepository.deleteById(bookId);
+            return ResponseEntity.ok().build();
         }
+        return ResponseEntity.notFound().build();
     }
 }

@@ -4,6 +4,8 @@ import com.library.dtos.AuthorDto;
 import com.library.models.Author;
 import com.library.repositories.AuthorRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,33 +15,43 @@ import java.util.Optional;
 public class AuthorService implements AuthorServiceInterface{
     @Autowired
     private AuthorRepositoryInterface authorRepository;
-    public AuthorDto getAuthorById(Long authorId) {
-        System.out.println("o id do autor: " + authorId);
-        Optional<Author> author = authorRepository.findById(authorId).stream().findFirst();
-        return author.map(AuthorDto::new).orElse(null);
+    public ResponseEntity<AuthorDto> getAuthorById(Long authorId) {
+        Optional<Author> author = authorRepository.findById(authorId);
+        AuthorDto authorDto = author.map(AuthorDto::new).orElse(null);
+
+        if( authorDto != null)
+            return new ResponseEntity<AuthorDto>(authorDto, HttpStatus.OK);
+        return new ResponseEntity<AuthorDto>(HttpStatus.NOT_FOUND);
     }
 
-    public List<AuthorDto> getAllAuthors() {
-        List<Author> authors = authorRepository.findAll();
-        return AuthorDto.toDtoList(authors);
+    public ResponseEntity<List<AuthorDto>> getAllAuthors() {
+        List<AuthorDto> authorsDtoList = authorRepository.findAll()
+                                                         .stream()
+                                                         .map(AuthorDto::new)
+                                                         .toList();
+        return ResponseEntity.ok().body(authorsDtoList);
     }
 
-    public AuthorDto createAuthor(AuthorDto authorDto) {
+    public ResponseEntity<AuthorDto> createAuthor(AuthorDto authorDto) {
         Author authorEntity = authorRepository.save(new Author(authorDto));
-        return new AuthorDto(authorEntity);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                             .body(new AuthorDto(authorEntity));
     }
 
-    public AuthorDto updateAuthor(AuthorDto authorDto, Long authorId) {
+    public ResponseEntity<AuthorDto> updateAuthor(AuthorDto authorDto, Long authorId) {
         if( authorRepository.existsById(authorId)){
             Author authorEntity = authorRepository.save(new Author(authorDto));
-            return new AuthorDto(authorEntity);
+            return ResponseEntity.status(HttpStatus.OK)
+                                 .body(new AuthorDto(authorEntity));
         }
-        return null;
+        return ResponseEntity.badRequest().build();
     }
 
-    public void deleteAuthor(Long authorId) {
+    public ResponseEntity<AuthorDto> deleteAuthor(Long authorId) {
         if( authorRepository.existsById(authorId)){
             authorRepository.deleteById(authorId);
+            return new ResponseEntity<AuthorDto>(HttpStatus.OK);
         }
+        return ResponseEntity.notFound().build();
     }
 }

@@ -4,6 +4,8 @@ import com.library.dtos.GenderDto;
 import com.library.models.Gender;
 import com.library.repositories.GenderRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,34 +16,41 @@ public class GenderService implements GenderServiceInterface{
     @Autowired
     private GenderRepositoryInterface genderRepository;
 
-    public GenderDto createGender(GenderDto genderDto ){
-        var genderEP = new Gender(genderDto);
-        return new GenderDto(genderRepository.save(genderEP));
+    public ResponseEntity<GenderDto> getGenderById( Long genderId ){
+        Optional<Gender> gender = genderRepository.findById(genderId);
+        GenderDto genderDto = gender.map(GenderDto::new).orElse(null);
+
+        if( genderDto != null )
+            return ResponseEntity.ok(genderDto);
+        return new ResponseEntity<GenderDto>(HttpStatus.NOT_FOUND);
     }
 
-    public GenderDto getGenderById( Long genderId ){
-        List<Gender> genderList = genderRepository.findById(genderId).stream().toList();
-        Optional<Gender> genderEP= genderList.stream().findFirst();
-        return genderEP.map(GenderDto::new).orElse(null);
+    public ResponseEntity<List<GenderDto>> getAllGenders() {
+        List<GenderDto> genderDtoList = genderRepository.findAll().stream()
+                                                                  .map(GenderDto::new)
+                                                                  .toList();
+        return new ResponseEntity<List<GenderDto>>(genderDtoList, HttpStatus.OK);
     }
 
-    public List<GenderDto> getAllGenders() {
-        List<Gender> genderList = genderRepository.findAll();
-        return GenderDto.toDtoList(genderList);
+    public ResponseEntity<GenderDto> createGender(GenderDto genderDto ){
+        Gender gender = genderRepository.save(new Gender(genderDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new GenderDto(gender));
     }
 
-    public GenderDto updateGender(GenderDto genderDto, Long id) {
+    public ResponseEntity<GenderDto> updateGender(GenderDto genderDto, Long id) {
         if(genderRepository.existsById(id)){
-            genderRepository.save(new Gender(genderDto));
-            return genderDto;
+            Gender gender = genderRepository.save(new Gender(genderDto));
+            return new ResponseEntity<GenderDto>(new GenderDto(gender), HttpStatus.OK);
         }
-        return null;
+        return ResponseEntity.badRequest().build();
     }
 
-    public void deleteGender(Long genderId) {
+    public ResponseEntity<GenderDto> deleteGender(Long genderId) {
         if( genderRepository.existsById(genderId)){
             genderRepository.deleteById(genderId);
+            return ResponseEntity.ok().build();
         }
+        return ResponseEntity.notFound().build();
     }
 
 }

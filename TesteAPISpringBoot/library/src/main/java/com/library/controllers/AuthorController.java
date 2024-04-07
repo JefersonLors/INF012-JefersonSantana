@@ -2,7 +2,9 @@ package com.library.controllers;
 
 import com.library.dtos.AuthorDto;
 import com.library.services.AuthorServiceInterface;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,28 +16,31 @@ public class AuthorController {
     private AuthorServiceInterface authorService;
 
     @GetMapping
-    public List<AuthorDto> getAllAuthors(){
+    public ResponseEntity<List<AuthorDto>> getAllAuthors(){
         return authorService.getAllAuthors();
     }
 
     @GetMapping("/authorId")
-    public AuthorDto getAuthorById(@RequestParam Long authorId){
+    public ResponseEntity<AuthorDto> getAuthorById(@RequestParam Long authorId){
         return authorService.getAuthorById(authorId);
     }
 
     @PostMapping
-    public AuthorDto createAuthor(@RequestBody AuthorDto authorDto){
+    @Transactional
+    public ResponseEntity<AuthorDto> createAuthor(@RequestBody AuthorDto authorDto){
         return authorService.createAuthor(authorDto);
     }
 
     @PutMapping("/{authorId}")
-    public AuthorDto updateAuthor(@RequestBody AuthorDto authorDto,
+    @Transactional
+    public ResponseEntity<AuthorDto> updateAuthor(@RequestBody AuthorDto authorDto,
                                   @PathVariable Long authorId){
         return authorService.updateAuthor(authorDto, authorId);
     }
 
     @DeleteMapping("/{authorId}")
-    public void deleteAuthor(@PathVariable Long authorId){
-        authorService.deleteAuthor(authorId);
+    @Transactional
+    public ResponseEntity<AuthorDto> deleteAuthor(@PathVariable Long authorId){
+        return authorService.deleteAuthor(authorId);
     }
 }

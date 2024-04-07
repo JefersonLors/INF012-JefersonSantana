@@ -1,13 +1,14 @@
 package com.library.services;
 
 import com.library.dtos.AuthorDto;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface AuthorServiceInterface {
-    AuthorDto getAuthorById(Long authorId);
-    List<AuthorDto> getAllAuthors();
-    AuthorDto createAuthor(AuthorDto authorDto);
-    AuthorDto updateAuthor(AuthorDto authorDto, Long authorId);
-    void deleteAuthor(Long authorId);
+    ResponseEntity<AuthorDto> getAuthorById(Long authorId);
+    ResponseEntity<List<AuthorDto>> getAllAuthors();
+    ResponseEntity<AuthorDto> createAuthor(AuthorDto authorDto);
+    ResponseEntity<AuthorDto> updateAuthor(AuthorDto authorDto, Long authorId);
+    ResponseEntity<AuthorDto> deleteAuthor(Long authorId);
 }
