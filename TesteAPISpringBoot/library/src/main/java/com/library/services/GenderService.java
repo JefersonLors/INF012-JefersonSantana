@@ -4,6 +4,9 @@ import com.library.dtos.GenderDto;
 import com.library.models.Gender;
 import com.library.repositories.GenderRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,14 +25,15 @@ public class GenderService implements GenderServiceInterface{
 
         if( genderDto != null )
             return ResponseEntity.ok(genderDto);
-        return new ResponseEntity<GenderDto>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<List<GenderDto>> getAllGenders() {
-        List<GenderDto> genderDtoList = genderRepository.findAll().stream()
-                                                                  .map(GenderDto::new)
-                                                                  .toList();
-        return new ResponseEntity<List<GenderDto>>(genderDtoList, HttpStatus.OK);
+    public ResponseEntity<Page<GenderDto>> getAllGenders(int page, int pageSize) {
+        Pageable contentPage = PageRequest.of(page, pageSize);
+
+        Page<GenderDto> genderDtoList = genderRepository.findAll(contentPage).map(GenderDto::new);
+
+        return new ResponseEntity<>( genderDtoList, HttpStatus.OK);
     }
 
     public ResponseEntity<GenderDto> createGender(GenderDto genderDto ){
@@ -40,7 +44,7 @@ public class GenderService implements GenderServiceInterface{
     public ResponseEntity<GenderDto> updateGender(GenderDto genderDto, Long id) {
         if(genderRepository.existsById(id)){
             Gender gender = genderRepository.save(new Gender(genderDto));
-            return new ResponseEntity<GenderDto>(new GenderDto(gender), HttpStatus.OK);
+            return new ResponseEntity<>(new GenderDto(gender), HttpStatus.OK);
         }
         return ResponseEntity.badRequest().build();
     }

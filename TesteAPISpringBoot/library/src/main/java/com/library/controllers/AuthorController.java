@@ -4,25 +4,28 @@ import com.library.dtos.AuthorDto;
 import com.library.services.AuthorServiceInterface;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/author")
+@RequestMapping("/authors")
 public class AuthorController {
     @Autowired
     private AuthorServiceInterface authorService;
 
     @GetMapping
-    public ResponseEntity<List<AuthorDto>> getAllAuthors(){
-        return authorService.getAllAuthors();
+    public ResponseEntity<Page<AuthorDto>> getAllAuthors( @RequestParam(defaultValue = "0") int page,
+                                                          @RequestParam(defaultValue = "1000") int pageSize ){
+        return authorService.getAllAuthors(page, pageSize);
     }
 
-    @GetMapping("/authorId")
-    public ResponseEntity<AuthorDto> getAuthorById(@RequestParam Long authorId){
-        return authorService.getAuthorById(authorId);
+    @GetMapping("/id")
+    public ResponseEntity<AuthorDto> getAuthorById( @RequestParam Long id){
+        return authorService.getAuthorById(id);
     }
 
     @PostMapping
@@ -31,16 +34,16 @@ public class AuthorController {
         return authorService.createAuthor(authorDto);
     }
 
-    @PutMapping("/{authorId}")
+    @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<AuthorDto> updateAuthor(@RequestBody AuthorDto authorDto,
-                                  @PathVariable Long authorId){
-        return authorService.updateAuthor(authorDto, authorId);
+                                                  @PathVariable Long id){
+        return authorService.updateAuthor(authorDto, id);
     }
 
-    @DeleteMapping("/{authorId}")
+    @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<AuthorDto> deleteAuthor(@PathVariable Long authorId){
-        return authorService.deleteAuthor(authorId);
+    public ResponseEntity<AuthorDto> deleteAuthor(@PathVariable Long id) {
+        return authorService.deleteAuthor(id);
     }
 }
