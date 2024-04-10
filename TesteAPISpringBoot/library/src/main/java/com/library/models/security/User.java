@@ -1,6 +1,8 @@
 package com.library.models.security;
 
 import com.library.dtos.security.UserDto;
+import com.library.repositories.security.UserRoleRepositoryInterface;
+import com.library.services.security.userRole.UserRoleService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,7 +44,14 @@ public class User implements UserDetails {
         this.name = userDto.name();
         this.login = userDto.login();
         this.password = userDto.password();
+        this.role = new UserRole(userDto.role());
     }
+    public User( String login, String password, UserRole role ){
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if( this.role.getName().equalsIgnoreCase("admin") )
@@ -50,7 +59,6 @@ public class User implements UserDetails {
 
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
-
     @Override
     public String getUsername() {
         return this.login;

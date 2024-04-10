@@ -1,4 +1,4 @@
-package com.library.services.security;
+package com.library.services.security.user;
 
 import com.library.dtos.security.UserDto;
 import com.library.models.security.User;

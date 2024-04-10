@@ -1,7 +1,7 @@
 package com.library.controllers.security;
 
 import com.library.dtos.security.UserDto;
-import com.library.services.security.UserServiceInterface;
+import com.library.services.security.user.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -24,16 +24,16 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
-        return userService.createUser(userDto);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,
-                                              @PathVariable long id){
-        return userService.updateUser(userDto, id);
-    }
+//    @PostMapping
+//    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+//        return userService.createUser(userDto);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,
+//                                              @PathVariable long id){
+//        return userService.updateUser(userDto, id);
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<UserDto> deleteUser(@PathVariable long id){

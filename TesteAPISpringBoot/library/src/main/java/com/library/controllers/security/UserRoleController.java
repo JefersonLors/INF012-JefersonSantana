@@ -1,7 +1,7 @@
 package com.library.controllers.security;
 
 import com.library.dtos.security.UserRoleDto;
-import com.library.services.security.UserRoleServiceInterface;
+import com.library.services.security.userRole.UserRoleServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
