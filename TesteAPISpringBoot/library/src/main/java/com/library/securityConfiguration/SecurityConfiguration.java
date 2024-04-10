@@ -23,16 +23,13 @@ public class SecurityConfiguration{
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity ) throws Exception {
         return httpSecurity.csrf(csrf -> csrf.disable()) //desativa as configurações padrão
                            .sessionManagement(session -> session.sessionCreationPolicy( SessionCreationPolicy.STATELESS)) //muda de statefull para stateless a forma de autenticação
-//                            .authorizeHttpRequests( authorize -> authorize
-//                                    .requestMatchers( HttpMethod.POST, "/auth/login").permitAll()
-//                                    .requestMatchers( HttpMethod.POST, "/auth/register").permitAll()
-//                                    .requestMatchers( HttpMethod.POST, "/user-roles").hasRole("ADMIN")
-//                                    .requestMatchers( HttpMethod.PUT, "/user-roles").hasRole("ADMIN")
-//                                    .requestMatchers( HttpMethod.DELETE, "/user-roles").hasRole("ADMIN")
-//                                    .requestMatchers( HttpMethod.GET, "/user-roles").permitAll()
-//                                    .anyRequest().authenticated()
-//                            )
-//                            .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                            .authorizeHttpRequests( authorize -> authorize
+                                    .requestMatchers( HttpMethod.POST, "/auth/login").permitAll()
+                                    .requestMatchers( HttpMethod.POST, "/auth/register").permitAll()
+                                    .requestMatchers( HttpMethod.GET, "/user-roles").permitAll()
+                                    .anyRequest().authenticated()
+                            )
+                            .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                             .build();
     }
 

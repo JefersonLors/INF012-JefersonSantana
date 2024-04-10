@@ -4,6 +4,7 @@ import com.library.dtos.BookDto;
 import com.library.models.Book;
 import com.library.services.BookService;
 import com.library.services.BookServiceInterface;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,10 @@ public class BookController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<BookDto> createBook(@RequestBody BookDto bookDto){
+    public ResponseEntity<BookDto> createBook(@RequestBody BookDto bookDto, HttpServletRequest request){
+        String token = request.getHeader("Authorization");
+
+        System.out.println("\n\n\ntoken : " + token);
         return bookService.createBook(bookDto);
     }
 

@@ -2,9 +2,11 @@ package com.library.controllers.security;
 
 import com.library.dtos.security.UserRoleDto;
 import com.library.services.security.userRole.UserRoleServiceInterface;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,17 +25,23 @@ public class UserRoleController {
         return userRoleService.getUserRoleById(id);
     }
     @PostMapping
+    @Transactional
+    @Secured("ADMIN")
     public ResponseEntity<UserRoleDto> createUserRole(@RequestBody UserRoleDto userRoleDto){
         return userRoleService.createUserRole(userRoleDto);
     }
 
     @PutMapping("/{id}")
+    @Transactional
+    @Secured("ADMIN")
     public ResponseEntity<UserRoleDto> updateUserRole(@RequestBody UserRoleDto userRoleDto,
                                                       @PathVariable long id){
         return userRoleService.updateUserRole(userRoleDto, id);
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
+    @Secured("ADMIN")
     public ResponseEntity<UserRoleDto> deleteUserRole(@PathVariable long id){
         return userRoleService.deleteUserRole(id);
     }
