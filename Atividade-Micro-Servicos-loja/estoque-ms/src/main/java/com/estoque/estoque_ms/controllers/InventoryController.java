@@ -1,14 +1,15 @@
 package com.estoque.estoque_ms.controllers;
 
 import com.estoque.estoque_ms.dtos.ProductDetailedDto;
+import com.estoque.estoque_ms.dtos.ProductReportDto;
 import com.estoque.estoque_ms.services.InventoryService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/inventory")
@@ -16,6 +17,12 @@ public class InventoryController {
     @Autowired
     InventoryService inventoryService;
 
+    @GetMapping()
+    public ResponseEntity<List<ProductReportDto>> getReport(){
+        List<ProductReportDto> report = inventoryService.getInventoryReport();
+
+        return ResponseEntity.ok(report);
+    }
     @PutMapping("/in/{productId}/{inventory}")
     public ResponseEntity<ProductDetailedDto> inProduct(@PathVariable long productId,
                                                         @PathVariable long inventory){

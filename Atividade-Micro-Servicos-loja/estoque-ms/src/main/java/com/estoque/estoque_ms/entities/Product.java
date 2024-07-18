@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -25,6 +27,9 @@ public class Product {
     double price;
 
     long inventory;
+
+    LocalDateTime ctr_dth_updt;
+
     public Product(ProductDto productDto){
         this.id = productDto.id();
         this.category = new Category(productDto.codCategory(), null);
