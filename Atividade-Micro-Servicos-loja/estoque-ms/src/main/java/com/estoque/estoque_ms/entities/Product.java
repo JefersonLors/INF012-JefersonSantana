@@ -27,7 +27,7 @@ public class Product {
     long inventory;
     public Product(ProductDto productDto){
         this.id = productDto.id();
-        this.category = new Category(productDto.category());
+        this.category = new Category(productDto.codCategory(), null);
         this.name = productDto.name();
         this.price = productDto.price();
         this.inventory = productDto.inventory();

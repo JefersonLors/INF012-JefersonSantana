@@ -1,5 +1,6 @@
 package com.estoque.estoque_ms.controllers;
 
+import com.estoque.estoque_ms.dtos.ProductDetailedDto;
 import com.estoque.estoque_ms.dtos.ProductDto;
 import com.estoque.estoque_ms.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,60 +22,60 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/id")
-    public ResponseEntity<ProductDto> getProductById(@RequestParam long id){
-        ProductDto productDto = productService.getProductById(id);
+    public ResponseEntity<ProductDetailedDto> getProductById(@RequestParam long id){
+        ProductDetailedDto productDetailedDto = productService.getProductById(id);
 
-        if(productDto == null)
+        if(productDetailedDto == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        return ResponseEntity.ok(productDto);
+        return ResponseEntity.ok(productDetailedDto);
     }
 
     @GetMapping("/name")
-    public ResponseEntity<List<ProductDto>> getProductByName(@RequestParam String name){
-        List<ProductDto> productDtoList = productService.getProductByName(name);
+    public ResponseEntity<List<ProductDetailedDto>> getProductByName(@RequestParam String name){
+        List<ProductDetailedDto> productDetailedDto = productService.getProductByName(name);
 
-        if(productDtoList == null)
-            return new ResponseEntity<List<ProductDto>>(HttpStatus.NOT_FOUND);
+        if(productDetailedDto == null)
+            return new ResponseEntity<List<ProductDetailedDto>>(HttpStatus.NOT_FOUND);
 
-        return ResponseEntity.ok(productDtoList);
+        return ResponseEntity.ok(productDetailedDto);
     }
 
     @GetMapping()
-    public ResponseEntity<Page<ProductDto>> getAllProducts(Pageable page){
+    public ResponseEntity<Page<ProductDetailedDto>> getAllProducts(Pageable page){
         return ResponseEntity.ok(productService.getAllProducts(page));
     }
 
     @PostMapping()
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto, UriComponentsBuilder uriBuilder){
-        productDto = productService.createProduct(productDto);
+    public ResponseEntity<ProductDetailedDto> createProduct(@RequestBody ProductDto productDto, UriComponentsBuilder uriBuilder){
+        ProductDetailedDto productDetailedDto = productService.createProduct(productDto);
 
         if( productDto == null )
-            return new ResponseEntity<ProductDto>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<ProductDetailedDto>(HttpStatus.BAD_REQUEST);
 
-        URI location =  uriBuilder.path("/{id}").buildAndExpand(productDto).toUri();
+        URI location =  uriBuilder.path("/{id}").buildAndExpand(productDetailedDto).toUri();
 
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable long id,
+    public ResponseEntity<ProductDetailedDto> updateProduct(@PathVariable long id,
                                                     @RequestBody ProductDto productDto){
-        productDto = productService.updateProduct(id, productDto);
+        ProductDetailedDto productDetailedDto = productService.updateProduct(id, productDto);
 
         if( productDto == null )
-            return new ResponseEntity<ProductDto>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<ProductDetailedDto>(HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(productDto);
+        return ResponseEntity.ok(productDetailedDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ProductDto> deleteProduct(@PathVariable long id){
-        ProductDto productDto = productService.deleteProduct(id);
+    public ResponseEntity<ProductDetailedDto> deleteProduct(@PathVariable long id){
+        ProductDetailedDto productDetailedDto  = productService.deleteProduct(id);
 
-        if( productDto == null )
-            return new ResponseEntity<ProductDto>(HttpStatus.BAD_REQUEST);
+        if( productDetailedDto == null )
+            return new ResponseEntity<ProductDetailedDto>(HttpStatus.BAD_REQUEST);
 
-        return ResponseEntity.ok(productDto);
+        return ResponseEntity.ok(productDetailedDto);
     }
 }

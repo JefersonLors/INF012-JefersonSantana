@@ -1,5 +1,6 @@
 package com.estoque.estoque_ms.services;
 
+import com.estoque.estoque_ms.dtos.ProductDetailedDto;
 import com.estoque.estoque_ms.dtos.ProductDto;
 import com.estoque.estoque_ms.entities.Category;
 import com.estoque.estoque_ms.entities.Product;
@@ -8,8 +9,6 @@ import com.estoque.estoque_ms.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,27 +22,27 @@ public class ProductService {
     @Autowired
     CategoryRepository categoryRepository;
 
-    public ProductDto getProductById(long id){
+    public ProductDetailedDto getProductById(long id){
         Optional<Product> productOp = productRepository.findById(id);
 
         if( productOp.isEmpty() )
             return null;
 
-        return new ProductDto(productOp.get());
+        return new ProductDetailedDto(productOp.get());
     }
 
-    public List<ProductDto> getProductByName(String name){
+    public List<ProductDetailedDto> getProductByName(String name){
         List<Product> productList = productRepository.findByNameContaining(name);
 
-        return productList.stream().map(ProductDto::new).toList();
+        return productList.stream().map(ProductDetailedDto::new).toList();
     }
 
-    public Page<ProductDto> getAllProducts(Pageable page){
-        return productRepository.findAll(page).map(ProductDto::new);
+    public Page<ProductDetailedDto> getAllProducts(Pageable page){
+        return productRepository.findAll(page).map(ProductDetailedDto::new);
     }
 
-    public ProductDto createProduct(ProductDto productDto){
-        Optional<Category> categoryOp = categoryRepository.findById(productDto.category().id());
+    public ProductDetailedDto createProduct(ProductDto productDto){
+        Optional<Category> categoryOp = categoryRepository.findById(productDto.codCategory());
 
         if( !categoryOp.isPresent() ){
             return null;
@@ -51,13 +50,13 @@ public class ProductService {
 
         Product product = productRepository.save(new Product(productDto));
 
-        return new ProductDto(product);
+        return new ProductDetailedDto(product);
     }
 
-    public ProductDto updateProduct(long id, ProductDto productDto){
+    public ProductDetailedDto updateProduct(long id, ProductDto productDto){
         Optional<Product> productOp = productRepository.findById(id);
 
-        Optional<Category> categoryOp = categoryRepository.findById(productDto.category().id());
+        Optional<Category> categoryOp = categoryRepository.findById(productDto.codCategory());
 
         if( !categoryOp.isPresent() || !productOp.isPresent())
             return null;
@@ -65,16 +64,16 @@ public class ProductService {
         Product product = productOp.get();
 
         product.setName(productDto.name());
-        product.setCategory(new Category(productDto.category()));
+        product.setCategory(categoryOp.get());
         product.setPrice(productDto.price());
         product.setInventory(productDto.inventory());
 
         product = productRepository.save(product);
 
-        return new ProductDto(product);
+        return new ProductDetailedDto(product);
     }
 
-    public ProductDto deleteProduct(long id){
+    public ProductDetailedDto deleteProduct(long id){
         Optional<Product> productOp = productRepository.findById(id);
 
         if( productOp.isEmpty() ){
@@ -83,6 +82,6 @@ public class ProductService {
 
         productRepository.deleteById(id);
 
-        return new ProductDto(productOp.get());
+        return new ProductDetailedDto(productOp.get());
     }
 }
