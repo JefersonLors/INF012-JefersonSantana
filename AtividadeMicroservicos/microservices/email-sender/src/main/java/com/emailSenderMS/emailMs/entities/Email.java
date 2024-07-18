@@ -34,7 +34,6 @@ public class Email {
         this.mailSubject = emailDto.mailSubject();
         this.mailText = emailDto.mailText();
         this.mailSendDateTime = emailDto.mailSendDateTime();
-        this.mailSendingStatus = emailDto.mailSendingStatus();
     }
 
 }

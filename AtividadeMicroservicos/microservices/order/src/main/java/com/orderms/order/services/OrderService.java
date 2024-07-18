@@ -1,13 +1,13 @@
 package com.orderms.order.services;
 
-import com.orderms.order.dtos.ItemDto;
-import com.orderms.order.dtos.OrderDto;
-import com.orderms.order.dtos.StatusDto;
+import com.orderms.order.dtos.*;
 import com.orderms.order.entities.Order;
 import com.orderms.order.entities.Status;
 import com.orderms.order.repositories.ItemRepository;
 import com.orderms.order.repositories.OrderRepository;
 import com.orderms.order.repositories.StatusRepository;
+import com.orderms.order.services.clients.CostumerClient;
+import com.orderms.order.services.clients.EmailClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,12 @@ public class OrderService {
 
     @Autowired
     private StatusRepository statusRepository;
+
+    @Autowired
+    private EmailClient emailClient;
+
+    @Autowired
+    private CostumerClient costumerClient;
 
     public ResponseEntity<OrderDto> getOrderById(Long id){
         return this.orderRepository.findById(id)
@@ -62,10 +68,20 @@ public class OrderService {
         }
 
         Order oldOrder = order.get();
-
         oldOrder.setStatus(new Status(status));
-
         oldOrder = this.orderRepository.save(oldOrder);
+
+        ClientDto client = this.costumerClient.getClientById(oldOrder.getId()).getBody();
+
+        EmailDto email = new EmailDto(
+                                    null,
+                                    "lors.jeferson@gmail.com",
+                                    client.email(),
+                                    "teste",
+                                    "atualização de status",
+                                    null);
+
+        this.emailClient.sendEmail(email);
 
         return ResponseEntity.ok(new OrderDto(oldOrder));
     }

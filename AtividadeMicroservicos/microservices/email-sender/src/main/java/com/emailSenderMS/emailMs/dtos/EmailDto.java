@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 
 public record EmailDto(Long id, String mailFrom, String mailTo,
                        String mailSubject, String mailText,
-                       LocalDateTime mailSendDateTime, MailSendingStatus mailSendingStatus) {
+                       LocalDateTime mailSendDateTime) {
 
     public EmailDto(Email email){
         this(email.getId(), email.getMailFrom(), email.getMailTo(), email.getMailSubject(),
-                email.getMailText(), email.getMailSendDateTime(), email.getMailSendingStatus());
+                email.getMailText(), email.getMailSendDateTime());
     }
 
 
