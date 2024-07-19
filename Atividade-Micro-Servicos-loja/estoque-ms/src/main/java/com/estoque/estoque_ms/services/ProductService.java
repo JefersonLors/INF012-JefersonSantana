@@ -22,15 +22,6 @@ public class ProductService {
     @Autowired
     CategoryRepository categoryRepository;
 
-    public ProductDetailedDto getProductById(long id){
-        Optional<Product> productOp = productRepository.findById(id);
-
-        if( productOp.isEmpty() )
-            return null;
-
-        return new ProductDetailedDto(productOp.get());
-    }
-
     public List<ProductDetailedDto> getProductByName(String name){
         List<Product> productList = productRepository.findByNameContaining(name);
 

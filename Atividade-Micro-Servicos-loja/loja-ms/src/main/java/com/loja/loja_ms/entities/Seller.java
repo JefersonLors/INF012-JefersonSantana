@@ -1,5 +1,6 @@
 package com.loja.loja_ms.entities;
 
+import com.loja.loja_ms.dtos.SellerDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,10 @@ public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-
     String name;
+
+    public Seller(SellerDto sellerDto){
+        this.id = sellerDto.id();
+        this.name = sellerDto.name();
+    }
 }

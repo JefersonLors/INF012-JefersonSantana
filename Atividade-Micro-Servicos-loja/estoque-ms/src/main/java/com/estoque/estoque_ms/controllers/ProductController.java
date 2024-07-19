@@ -21,16 +21,6 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/id")
-    public ResponseEntity<ProductDetailedDto> getProductById(@RequestParam long id){
-        ProductDetailedDto productDetailedDto = productService.getProductById(id);
-
-        if(productDetailedDto == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        return ResponseEntity.ok(productDetailedDto);
-    }
-
     @GetMapping("/name")
     public ResponseEntity<List<ProductDetailedDto>> getProductByName(@RequestParam String name){
         List<ProductDetailedDto> productDetailedDto = productService.getProductByName(name);

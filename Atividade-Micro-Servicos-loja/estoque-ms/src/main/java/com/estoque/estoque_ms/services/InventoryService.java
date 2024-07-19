@@ -19,6 +19,15 @@ public class InventoryService {
         return  productRepository.findAll().stream().map(ProductReportDto::new).toList();
     }
 
+    public ProductDetailedDto getProductById(long id){
+        Optional<Product> productOp = productRepository.findById(id);
+
+        if( productOp.isEmpty() )
+            return null;
+
+        return new ProductDetailedDto(productOp.get());
+    }
+
     public ProductDetailedDto inProduct(long productId, long inventory){
         Optional<Product> productOp = productRepository.findById(productId);
 

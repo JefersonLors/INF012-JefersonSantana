@@ -1,5 +1,6 @@
 package com.loja.loja_ms.controller;
 
+import com.loja.loja_ms.dtos.SaleCancellDto;
 import com.loja.loja_ms.dtos.SaleDetailedDto;
 import com.loja.loja_ms.dtos.SaleDto;
 import com.loja.loja_ms.services.SaleService;
@@ -38,16 +39,16 @@ public class SaleController {
         SaleDetailedDto saleDetailedDto = saleService.sale(saleDto);
 
         if( saleDetailedDto == null )
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<SaleDetailedDto>(HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(saleDetailedDto);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<SaleDetailedDto> sale(@PathVariable long id){
-        SaleDetailedDto saleDetailedDto = saleService.cancellSale(id);
+    @PutMapping()
+    public ResponseEntity<SaleDetailedDto> cancellSale(@RequestBody SaleCancellDto saleCancellDto){
+        SaleDetailedDto saleDetailedDto = saleService.cancellSale(saleCancellDto);
 
         if( saleDetailedDto == null )
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<SaleDetailedDto>(HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(saleDetailedDto);
     }

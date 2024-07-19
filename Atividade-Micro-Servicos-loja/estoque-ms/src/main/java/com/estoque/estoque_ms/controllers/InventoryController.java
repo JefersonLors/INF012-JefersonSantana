@@ -23,6 +23,17 @@ public class InventoryController {
 
         return ResponseEntity.ok(report);
     }
+
+    @GetMapping("/id")
+    public ResponseEntity<ProductDetailedDto> getProductById(@RequestParam long id){
+        ProductDetailedDto productDetailedDto = inventoryService.getProductById(id);
+
+        if(productDetailedDto == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return ResponseEntity.ok(productDetailedDto);
+    }
+
     @PutMapping("/in/{productId}/{inventory}")
     public ResponseEntity<ProductDetailedDto> inProduct(@PathVariable long productId,
                                                         @PathVariable long inventory){
