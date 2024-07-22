@@ -6,6 +6,7 @@ import com.loja.loja_ms.entities.Sale;
 import com.loja.loja_ms.entities.Seller;
 import com.loja.loja_ms.repositories.SaleRepository;
 import com.loja.loja_ms.repositories.SellerRepository;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +28,8 @@ public class SaleService {
     @Autowired
     InventoryClient inventoryClient;
 
+    @Autowired
+    RabbitTemplate rabbitTemplate;
     public SaleDetailedDto getSaleById(long id){
         Optional<Sale> saleOp = saleRepository.findById(id);
 
@@ -88,6 +91,16 @@ public class SaleService {
 
         if(!response.hasBody())
             return null;
+         EmailDto email = new EmailDto(
+                 0,
+                 "lors.jeferson@gmail.com",
+                 "jeferson.lazy@gmail.com",
+                 "Venda realizada",
+                 "Mais uma venda realizada",
+                 null,
+                 null
+         );
+        rabbitTemplate.convertAndSend("email-queue", email);
 
         return new SaleDetailedDto(saleRepository.save(sale));
     }
